@@ -6,7 +6,8 @@ public class Solution {
         for (int i = 0; i < h; i++) {
             startNum = (2 * startNum + 1);
             if (qi == startNum && h > (i + 1)) {
-                return (2 * startNum) + 1;
+                int ret = (2 * startNum) + 1;
+                return ret;
             }
             if (qi == 1 && h > (i + 1)) {
                 return 3;
@@ -16,7 +17,8 @@ public class Solution {
             }
             if (qi < startNum) {
                 int add = ((startNum - 1) / 2);
-                return (add + Solution.recursiveMethod(i, qi - add));
+                int ret = add + Solution.recursiveMethod(i, qi - add);
+                return ret;
             }
             return -1;
         }
