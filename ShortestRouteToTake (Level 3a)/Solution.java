@@ -62,13 +62,13 @@ class Solutions {
     public void recursiveMethodRoutes(int x, int y, ArrayList<Pnt> historyArrayList, Boolean hasRemoved) {
         Pnt historyXYPnt = new Pnt(x, y);
         historyArrayList.add(historyXYPnt);
-        if (x == this.map[0].length - 1 && y == this.map.length - 1) {
+        if (x == map[0].length - 1 && y == map.length - 1) {
             outputArrayList.add(Integer.valueOf(historyArrayList.size()));
         }
         if (y > 0) {
             int newY = y - 1;
             int u = map[newY][x];
-            if (!(this.isXYinHistory(x, newY, historyArrayList))) {
+            if (!(isXYinHistory(x, newY, historyArrayList))) {
                 if (u == 0) {
                     recursiveMethodRoutes(x, newY, new ArrayList<Pnt>(historyArrayList), hasRemoved);
                 } else if (!hasRemoved) {
@@ -79,7 +79,7 @@ class Solutions {
         if (y < map.length - 1) {
             int newY = y + 1;
             int d = map[newY][x];
-            if (!(this.isXYinHistory(x, newY, historyArrayList))) {
+            if (!(isXYinHistory(x, newY, historyArrayList))) {
                 if (d == 0) {
                     recursiveMethodRoutes(x, newY, new ArrayList<Pnt>(historyArrayList), hasRemoved);
                 } else if (!hasRemoved) {
@@ -90,7 +90,7 @@ class Solutions {
         if (x > 0) {
             int newX = x - 1;
             int l = map[y][newX];
-            if (!(this.isXYinHistory(newX, y, historyArrayList))) {
+            if (!(isXYinHistory(newX, y, historyArrayList))) {
                 if (l == 0) {
                     recursiveMethodRoutes(newX, y, new ArrayList<Pnt>(historyArrayList), hasRemoved);
                 } else if (!hasRemoved) {
@@ -101,7 +101,7 @@ class Solutions {
         if (x < map[0].length - 1) {
             int newX = x + 1;
             int r = map[y][newX];
-            if (!(this.isXYinHistory(newX, y, historyArrayList))) {
+            if (!(isXYinHistory(newX, y, historyArrayList))) {
                 if (r == 0) {
                     recursiveMethodRoutes(newX, y, new ArrayList<Pnt>(historyArrayList), hasRemoved);
                 } else if (!hasRemoved) {
@@ -110,4 +110,5 @@ class Solutions {
             }
         }
     }
+    
 }
