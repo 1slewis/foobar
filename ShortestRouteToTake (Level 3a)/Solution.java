@@ -50,10 +50,11 @@ class Solutions {
         this.history = new ArrayList<Pnt>();
     }
     public int calc() {
+        int i = 0;
         int dist = Integer.MAX_VALUE;
         queue.add(new Pnt(0,0,1, false));
         while (queue.size() > 0) {
-            Pnt zeroPnt = queue.get(0);
+            Pnt zeroPnt = queue.get(i);
             int x = zeroPnt.getX();
             int y = zeroPnt.getY();
             dist = zeroPnt.getDist();
@@ -64,7 +65,7 @@ class Solutions {
             if (y > 0 && (x < map[y - 1].length)) {
                 int newY = y - 1;
                 int u = map[newY][x];
-                if (!(isXYinHistoryOrQueue(x, newY, hasRemoved))) {
+                if (!(isXYinQueue(x, newY, hasRemoved))) {
                     if (u == 0) {
                         queue.add(new Pnt(x, newY, dist + 1, hasRemoved));
                     } else if (!hasRemoved) {
@@ -75,7 +76,7 @@ class Solutions {
             if (y < map.length - 1 && (x < map[y + 1].length)) {
                 int newY = y + 1;
                 int d = map[newY][x];
-                if (!(isXYinHistoryOrQueue(x, newY, hasRemoved))) {
+                if (!(isXYinQueue(x, newY, hasRemoved))) {
                     if (d == 0) {
                         queue.add(new Pnt(x, newY, dist + 1, hasRemoved));
                     } else if (!hasRemoved) {
@@ -86,7 +87,7 @@ class Solutions {
             if (x > 0) {
                 int newX = x - 1;
                 int l = map[y][newX];
-                if (!(isXYinHistoryOrQueue(newX, y, hasRemoved))) {
+                if (!(isXYinQueue(newX, y, hasRemoved))) {
                     if (l == 0) {
                         queue.add(new Pnt(newX, y, dist + 1, hasRemoved));
                     } else if (!hasRemoved) {
@@ -97,7 +98,7 @@ class Solutions {
             if (x < map[y].length - 1 ) {
                 int newX = x + 1;
                 int r = map[y][newX];
-                if (!(isXYinHistoryOrQueue(newX, y, hasRemoved))) {
+                if (!(isXYinQueue(newX, y, hasRemoved))) {
                     if (r == 0) {
                         queue.add(new Pnt(newX, y, dist + 1, hasRemoved));
                     } else if (!(hasRemoved)) {
@@ -105,17 +106,11 @@ class Solutions {
                     }
                 }
             }
-            queue.remove(0);
-            history.add(new Pnt(x,y,dist,hasRemoved));
+            i++;
         }
         return dist;
     }
-    public boolean isXYinHistoryOrQueue(int x, int y, boolean hasRemoved) {
-        for (int j = 0; j < history.size(); j++) {
-            if (history.get(j).getX() == x && history.get(j).getY() == y && history.get(j).getHasRemoved() == hasRemoved) {
-                return true;
-            }
-        }
+    public boolean isXYinQueue(int x, int y, boolean hasRemoved) {
         for (int j = 1; j < queue.size(); j++) {
             if (queue.get(j).getX() == x && queue.get(j).getY() == y && queue.get(j).getHasRemoved() == hasRemoved) {
                 return true;
