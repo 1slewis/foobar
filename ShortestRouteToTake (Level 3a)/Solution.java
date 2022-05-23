@@ -33,11 +33,10 @@ class Pnt {
 }
 class Solutions {
     final int[][] map;
-    ArrayList<Integer> outputArrayList;
+    final ArrayList<Integer> outputArrayList;
     public Solutions(int[][] map) {
         this.outputArrayList = new ArrayList<Integer>();
         this.map = map;
-        this.outputArrayList = new ArrayList<Integer>();
     }
     public void calc() {
         recursiveMethodRoutes(0, 0, new ArrayList<Pnt>(), false);
@@ -111,5 +110,4 @@ class Solutions {
             }
         }
     }
-    
 }
