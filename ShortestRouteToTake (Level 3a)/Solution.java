@@ -16,7 +16,6 @@ public class Solution {
     }
 }
 
-
 class Pnt {
     final int xPnt;
     final int yPnt;
@@ -31,6 +30,7 @@ class Pnt {
         return yPnt;
     }
 }
+
 class Solutions {
     final int[][] map;
     final ArrayList<Integer> outputArrayList;
@@ -62,10 +62,11 @@ class Solutions {
     public void recursiveMethodRoutes(int x, int y, ArrayList<Pnt> historyArrayList, Boolean hasRemoved) {
         Pnt historyXYPnt = new Pnt(x, y);
         historyArrayList.add(historyXYPnt);
-        if (x == map[0].length - 1 && y == map.length - 1) {
+        if (x == map[map.length - 1].length - 1 && y == map.length - 1) {
             outputArrayList.add(Integer.valueOf(historyArrayList.size()));
+            return;
         }
-        if (y > 0) {
+        if (y > 0 && (x < map[y - 1].length)) {
             int newY = y - 1;
             int u = map[newY][x];
             if (!(isXYinHistory(x, newY, historyArrayList))) {
@@ -76,7 +77,7 @@ class Solutions {
                 }
             }
         }
-        if (y < map.length - 1) {
+        if (y < map.length - 1 && (x < map[y + 1].length)) {
             int newY = y + 1;
             int d = map[newY][x];
             if (!(isXYinHistory(x, newY, historyArrayList))) {
