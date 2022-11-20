@@ -1,10 +1,11 @@
 public class Solution {
-    public static void addArrays(int[] arrayA, int[] arrayB) {
+    public static int[] addArrays(int[] arrayA, int[] arrayB) {
         int length = arrayA.length;
-        int[] result = new int[length];
+        int[] arrayRet = new int[length];
         for (var a = 0; a < length; a++) {
-            arrayA[a] = arrayA[a] + arrayB[a];
+            arrayRet[a] = arrayA[a] + arrayB[a];
         }
+        return arrayRet;
     }
     public static int mathMethod(int n) {
         int[] res = new int[n + 1];
@@ -16,7 +17,7 @@ public class Solution {
                     newRes[j + i] = res[j];
                 }
             }
-            Solution.addArrays(res, newRes);
+            res = Solution.addArrays(res, newRes);
         }
         return res[n];
     }
