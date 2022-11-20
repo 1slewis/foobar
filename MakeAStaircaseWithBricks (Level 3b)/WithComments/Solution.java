@@ -1,12 +1,13 @@
 public class Solution {
-    public static void addArrays(int[] arrayA, int[] arrayB) {
+    public static int[] addArrays(int[] arrayA, int[] arrayB) {
         // This function just gets the contents of two arrays and adds them element by element arithmetically
         // This function mutates arrayA as I am using loops not recursion (However arrayA isnt a public property)
         int length = arrayA.length;
-        int[] result = new int[length];
+        int[] arrayRet = new int[length];
         for (var a = 0; a < length; a++) {
-            arrayA[a] = arrayA[a] + arrayB[a];
+            arrayRet[a] = arrayA[a] + arrayB[a];
         }
+        return arrayRet;
     }
     public static int mathMethod(int n) {
         // Main logic for multiplying 1(1+x^1)(1+x^2)...
@@ -14,7 +15,7 @@ public class Solution {
         // So the answer a in ax^n is addition of unique numbers 
         // Initiate an array just bigger than n
         int[] res = new int[n + 1];
-        // First coefficient x^0 == 1 as 1(1+x)(1+x^2) there is an original 1 outside the bracket
+        // First coefficient x^0 = 1 as 1(1+x)(1+x^2) there is an original 1 outside the bracket
         res[0] = 1;
         for (var i = 1; i < n; i++) {
             // Initiate a new Array to contain the x^i * by the already calculated sum
@@ -27,7 +28,7 @@ public class Solution {
                 }
             }
             // Add 1 * res and x^i * res
-            Solution.addArrays(res, newRes);
+            res = Solution.addArrays(res, newRes);
         }
         return res[n];
     }
