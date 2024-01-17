@@ -11,7 +11,7 @@ public class Solution {
     }
     public static int mathMethod(int n) {
         // Main logic for multiplying 1(1+x^1)(1+x^2)...
-        // Answer is obtained by finding the coefficent of the x^n term which is how many ways to get x^n and x^a * x^b = x^a+b
+        // Answer is obtained by finding the coefficent of the x^n term, where n is number to odd-ly partition, which is how many ways to get x^n and x^a * x^b = x^a+b
         // So the answer a in ax^n is addition of unique numbers 
         // Initiate an array just bigger than n
         int[] res = new int[n + 1];
